@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
-import styled from 'styled-components';
+import styled, {css} from 'styled-components';
+import UserGrid from './Profile/UserGrid';
 
 // This example shows how to render two different screens
 // (or the same screen in a different context) at the same url,
@@ -64,6 +65,11 @@ const Image = styled.div`
   width: 305px;
   height: 305px;
   background: no-repeat center/150% url(/img/${({index}) => index}.jpg);
+  ${({inModal}) => !inModal && css`
+    :hover {
+      opacity: 0.7;
+    }
+  `}
 `
 
 const IMAGES = [
@@ -104,28 +110,29 @@ function Home() {
 const PhotoGrid = styled.div`
   display: grid;
   grid-template-columns: repeat(3, 305px);
-  width: 950px;
-  margin: auto;
+  justify-content: center;
   gap: 20px;
-  margin-top: 80px;
 `
 
 function Gallery() {
   return (
-    <PhotoGrid>
-      {IMAGES.map(i => (
-        <Link
-          key={i.id}
-          to={{
-            pathname: `/img/${i.id}`,
-            // this is the trick!
-            state: { modal: true }
-          }}
-        >
-          <Image index={i.id} />
-        </Link>
-      ))}
-    </PhotoGrid>
+    <div>
+      <UserGrid/>
+      <PhotoGrid>
+        {IMAGES.map(i => (
+          <Link
+            key={i.id}
+            to={{
+              pathname: `/img/${i.id}`,
+              // this is the trick!
+              state: { modal: true }
+            }}
+          >
+            <Image index={i.id} />
+          </Link>
+        ))}
+      </PhotoGrid>
+    </div>
   );
 }
 
@@ -177,7 +184,7 @@ function Modal({ match, history }) {
         }}
       >
         <h1>{image.title}</h1>
-        <Image index={image.id} />
+        <Image inModal index={image.id} />
         <button type="button" onClick={back}>
           Close
         </button>
