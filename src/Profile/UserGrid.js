@@ -32,7 +32,7 @@ const Description = styled.div`
 export default function() {
     return <UserGridStyled> 
         <Photo><ProfileImage/></Photo>
-        <Name>Name</Name>
+        <Name>Grid Gallery</Name>
         <Label><strong> 400 </strong> Followers </Label>
         <Description>
         Pickled flexitarian quinoa messenger bag, waistcoat you probably haven't heard of them chartreuse man bun meggings. Tofu umami woke, ramps blog +1 tote bag vaporware quinoa polaroid brooklyn sriracha meditation street art. Etsy shoreditch meh cliche gentrify. Art party meditation heirloom, readymade kale chips cliche 3 wolf moon poke flexitarian kinfolk.
