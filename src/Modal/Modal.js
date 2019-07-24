@@ -2,6 +2,7 @@ import React from 'react';
 import Posts from '../Posts';
 import {Image} from '../App';
 import styled, {createGlobalStyle} from 'styled-components';
+import {PostGrid, InfoGrid} from './PostGrid';
 
 const OverFlowHidden = createGlobalStyle`
     body {
@@ -13,8 +14,8 @@ const ModalStyled = styled.div`
     position: absolute;
     background: #fff;
     top: ${({top}) => top}px;
-    left: 10%;
-    right: 10%;
+    left: 25%;
+    right: 25%;
     padding: 15px;
     border: 2px solid #444;
 `
@@ -44,11 +45,14 @@ export function Modal({ match, history }) {
       >
         <ModalStyled top={window.scrollY + (window.innerHeight/2) - 250}>
         <OverFlowHidden/>
-          <h1>{image.title}</h1>
-          <Image inModal index={image.id} />
-          <button type="button" onClick={back}>
-            Close
-          </button>
+          <PostGrid>
+            <Image inModal index={image.id} />
+            <InfoGrid>
+              <h1>{image.title}</h1>
+              <div> Comments </div>
+              <div> 45 Likes </div>
+            </InfoGrid>
+          </PostGrid>
         </ModalStyled>
     </div>
     );
