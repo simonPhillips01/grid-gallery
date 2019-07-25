@@ -1,54 +1,79 @@
 import React from 'react';
 import UserGrid from '../Profile/UserGrid';
 import {Link} from 'react-router-dom';
-import styled from 'styled-components';
+import styled, {css} from 'styled-components';
 import Posts from '../Posts';
-import {Image} from '../App';
 
 const PhotoGrid = styled.div`
   display: grid;
   grid-template-columns: repeat(3, 305px);
   justify-content: center;
   gap: 20px;
+  grid-auto-rows: 305px;
+  ${({cascade}) => cascade && css`
+    grid-auto-rows: 200px;
+    grid-gap: 5px;
+    `}
 `
 
 const LinkGrid = styled.div`
     display: grid;
     grid-template-columns: auto auto;
     justify-content: center;
+    gap: 20px;
+    margin-bottom: 20px;
 `
 
 const TabLink = styled(Link)`
     text-decoration: none;
-    color: black;
-    width: 50px;
+    color: #ccc;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    ${({selected}) => selected && 'color: black;'}
 `
 
-export function Gallery() {
+const ImageLink = styled(Link)`
+    background: no-repeat center/150% url(/img/${({index}) => index}.jpeg);
+    :hover {
+        opacity: 0.7;
+    }
+    background-size: cover;
+    ${({cascade}) => cascade && css`
+        background-size: cover;
+        
+        &:nth-of-type(2n) {
+            grid-row-start: span 2;
+        }
+    `}
+`
+
+export function Gallery(match, location) {
+    const cascade = location.search === '?type=cascade';
     return (
       <div>
         <UserGrid/>
         <LinkGrid>
-            <TabLink to={`${match.url}`}>
+            <TabLink selected={!cascade} to={`${match.url}`}>
                 square
             </TabLink>
-            <TabLink to={{pathname: `${match.url}`, search: "?type=cascade"}}>
+            <TabLink selected={cascade} to={{pathname: `${match.url}`, search: "?type=cascade"}}>
                 cascade
             </TabLink>
         </LinkGrid>
-        <PhotoGrid>
-          {Posts.map(i => (
-            <Link
+        <PhotoGrid cascade={cascade}>
+          {Posts.map((i => (
+            <ImageLink
+              cascade={cascade}
               key={i.id}
+              index={i.id}
               to={{
                 pathname: `/img/${i.id}`,
                 // this is the trick!
                 state: { modal: true }
               }}
             >
-              <Image index={i.id} />
-            </Link>
-          ))}
+              </ImageLink>
+          )))}
         </PhotoGrid>
       </div>
     );
