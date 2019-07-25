@@ -4,6 +4,7 @@ import styled, {css} from 'styled-components';
 import UserGrid from './Profile/UserGrid';
 import {Modal} from './Modal/Modal';
 import Posts from './Posts';
+import {Gallery} from './Gallery/Gallery';
 
 // This example shows how to render two different screens
 // (or the same screen in a different context) at the same url,
@@ -87,35 +88,6 @@ function Home() {
           <Link to="/img/4">plants</Link>
         </li>
       </ul>
-    </div>
-  );
-}
-
-const PhotoGrid = styled.div`
-  display: grid;
-  grid-template-columns: repeat(3, 305px);
-  justify-content: center;
-  gap: 20px;
-`
-
-function Gallery() {
-  return (
-    <div>
-      <UserGrid/>
-      <PhotoGrid>
-        {Posts.map(i => (
-          <Link
-            key={i.id}
-            to={{
-              pathname: `/img/${i.id}`,
-              // this is the trick!
-              state: { modal: true }
-            }}
-          >
-            <Image index={i.id} />
-          </Link>
-        ))}
-      </PhotoGrid>
     </div>
   );
 }
