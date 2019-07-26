@@ -6,9 +6,19 @@ export const ProfileImage = styled.div`
     background: no-repeat center/100% url(/img/profile.jpg);
     border-radius: 100px;
     margin: 40px;
+    @media (max-width: 990px) {
+        margin: 20px;
+        width: 120px;
+        height: 120px;
+    }
     ${({mini}) => mini && css`
         width: 50px;
         height: 50px;
         margin: 5px;
+        @media (max-width: 990px) {
+            margin: 5px;
+            width: 30px;
+            height: 50px;
+        }
     `}
 `

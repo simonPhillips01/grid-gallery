@@ -1,10 +1,11 @@
 import React, { Component } from "react";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
-import styled, {css} from 'styled-components';
+import styled, {keyframes, css} from 'styled-components';
 import UserGrid from './Profile/UserGrid';
 import {Modal} from './Modal/Modal';
 import Posts from './Posts';
 import {Gallery} from './Gallery/Gallery';
+import {pulse} from 'react-animations';
 
 // This example shows how to render two different screens
 // (or the same screen in a different context) at the same url,
@@ -56,7 +57,7 @@ class ModalSwitch extends Component {
         <Switch location={isModal ? this.previousLocation : location}>
           <Route exact path="/" component={Home} />
           <Route path="/gallery" component={Gallery} />
-          <Route path="/img/:id" component={ImageView} />
+          <Route path="/img/:id" component={Modal} />
         </Switch>
         {isModal ? <Route path="/img/:id" component={Modal} /> : null}
       </div>
@@ -67,6 +68,9 @@ class ModalSwitch extends Component {
 export const Image = styled.div`
   width: 305px;
   height: 305px;
+  @media (max-width: 990px) {
+    width: 100%;
+  }
   background: no-repeat center/150% url(/img/${({index}) => index}.jpg);
   ${({inModal}) => !inModal && css`
     :hover {
@@ -75,32 +79,28 @@ export const Image = styled.div`
   `}
 `
 
+export const StyledLink = styled(Link)`
+  display: grid;
+  justify-content: center;
+  align-content: center;
+  height: 700px;
+  text-decoration: none;
+  &:focus, &:hover, &:visited, &:link, &:active {
+    text-decoration: none;
+}
+  color: black;
+  font-size: 100px;
+  
+`
+
+const Pulse = styled.div`
+  animation: 5s ${keyframes`${pulse}`} infinite
+`
+
 function Home() {
   return (
     <div>
-      <Link to="/gallery">Visit the Gallery</Link>
-      <h2>Featured Images</h2>
-      <ul>
-        <li>
-          <Link to="/img/2">Plants</Link>
-        </li>
-        <li>
-          <Link to="/img/4">plants</Link>
-        </li>
-      </ul>
-    </div>
-  );
-}
-
-function ImageView({ match }) {
-  let image = Posts[parseInt(match.params.id, 10) -1];
-
-  if (!image) return <div>Image not found</div>;
-
-  return (
-    <div>
-      <h1>{image.title}</h1>
-      <Image index={image.id} />
+      <Pulse><StyledLink to="/gallery">Visit the Gallery</StyledLink></Pulse> 
     </div>
   );
 }
