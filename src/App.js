@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import styled, {keyframes, css} from 'styled-components';
-import UserGrid from './Profile/UserGrid';
 import {Modal} from './Modal/Modal';
 import Posts from './Posts';
 import {Gallery} from './Gallery/Gallery';
@@ -83,7 +82,8 @@ export const StyledLink = styled(Link)`
   display: grid;
   justify-content: center;
   align-content: center;
-  height: 700px;
+  
+  min-height: 100vh;
   text-decoration: none;
   &:focus, &:hover, &:visited, &:link, &:active {
     text-decoration: none;

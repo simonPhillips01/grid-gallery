@@ -38,7 +38,7 @@ const TabLink = styled(Link)`
 `
 
 const ImageLink = styled(Link)`
-    background: no-repeat center/150% url(/img/${({index}) => index}.jpeg);
+    background: no-repeat center/150% url(/img/${({index}) => index}.jpg);
     :hover {
         opacity: 0.7;
     }
@@ -61,7 +61,7 @@ export function Gallery(match, location) {
             <TabLink selected={!cascade} to={`${match.url}`}>
                 square
             </TabLink>
-            <TabLink selected={cascade} to={{pathname: `${match.url}`, search: "?type=cascade"}}>
+            <TabLink selected={cascade} to={{pathname: `${match.url}`, search:"?type=cascade"}}>
                 cascade
             </TabLink>
         </LinkGrid>

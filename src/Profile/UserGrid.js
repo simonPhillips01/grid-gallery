@@ -56,7 +56,7 @@ export default function() {
         <Name>Grid Gallery</Name>
         <Label><strong> 400 </strong> Followers </Label>
         <Description>
-        Pickled flexitarian quinoa messenger bag, waistcoat you probably haven't heard of them chartreuse man bun meggings. Tofu umami woke, ramps blog +1 tote bag vaporware quinoa polaroid brooklyn sriracha meditation street art. Etsy shoreditch meh cliche gentrify. Art party meditation heirloom, readymade kale chips cliche 3 wolf moon poke flexitarian kinfolk.
+        In the future, indoor plant growth is predicted both in Eastern and Western Europe. Urbanisation, growing interest in sustainability, ethical living and sustainability, the increasing popularity of internet retailing and discounters, as well as the ageing population are set to re-shape the European gardening market.
         </Description>
         </UserGridStyled>
 }
