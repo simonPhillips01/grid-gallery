@@ -36,5 +36,26 @@
       To begin the development, run `npm start` or `yarn start`.
       To create a production bundle, use `npm run build` or `yarn build`.
     -->
+
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/6.3.5/firebase-app.js"></script>
+
+    <!-- TODO: Add SDKs for Firebase products that you want to use
+        https://firebase.google.com/docs/web/setup#config-web-app -->
+
+    <script>
+      // Your web app's Firebase configuration
+      var firebaseConfig = {
+        apiKey: "AIzaSyCNNHZcjUWDiajUHzmeMi3xLnGJAb5PLRo",
+        authDomain: "grid-gallery.firebaseapp.com",
+        databaseURL: "https://grid-gallery.firebaseio.com",
+        projectId: "grid-gallery",
+        storageBucket: "",
+        messagingSenderId: "226845149944",
+        appId: "1:226845149944:web:b1816b3f031bffc6"
+      };
+      // Initialize Firebase
+      firebase.initializeApp(firebaseConfig);
+    </script>
   </body>
 </html>
