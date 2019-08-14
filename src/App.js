@@ -93,6 +93,10 @@ export const StyledLink = styled(Link)`
   
 `
 
+const Icon = styled.div`
+  background-image: no-repeat center/150% url(../../Public/img/Icons/Circle.sketch)
+`
+
 const Pulse = styled.div`
   animation: 5s ${keyframes`${pulse}`} infinite
 `
@@ -100,6 +104,7 @@ const Pulse = styled.div`
 function Home() {
   return (
     <div>
+      <Icon/>
       <Pulse><StyledLink to="/gallery">Visit the Gallery</StyledLink></Pulse> 
     </div>
   );
